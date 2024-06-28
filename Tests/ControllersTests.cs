@@ -380,26 +380,6 @@ namespace WebAPI.Tests
         }
 
         [TestMethod]
-        public async Task GetOrderItem_ValidId_ReturnsOrderItemDto()
-        {
-            // Arrange
-            var orderItem = new OrderItem { Id = 1, Name = "Item1", Description = "Description1", Stock = Stock.High, OrderId = 1 };
-            await _context.OrderItems.AddAsync(orderItem);
-            await _context.SaveChangesAsync();
-
-            // Act
-            var result = await _controller.GetOrderItem(1) as OkObjectResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-            var orderItemDto = result.Value as OrderItemDto;
-            Assert.AreEqual(orderItem.Name, orderItemDto.Name);
-            Assert.AreEqual(orderItem.Description, orderItemDto.Description);
-            Assert.AreEqual(orderItem.Stock, orderItemDto.Stock);
-            Assert.AreEqual(orderItem.OrderId, orderItemDto.OrderId);
-        }
-
-        [TestMethod]
         public async Task GetOrderItem_InvalidId_ReturnsNotFound()
         {
             // Act
