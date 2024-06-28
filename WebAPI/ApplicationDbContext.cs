@@ -14,13 +14,20 @@ namespace WebAPI
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        // Only configure the database connection for non-testing environments
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(
+                    "Server=ACERASPIRE5\\SQLEXPRESS;Database=Grocery1;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+            }
             base.OnConfiguring(optionsBuilder);
-
-            // Configure the database connection
-            optionsBuilder.UseSqlServer(
-                "Server=ACERASPIRE5\\SQLEXPRESS;Database=Grocery1;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
