@@ -36,7 +36,7 @@ Aby zainstalować aplikację, wykonaj poniższe kroki:
 Konfiguracja łańcucha połączenia z bazą danych znajduje się w pliku `appsettings.json` oraz `ApplicationDbContext.cs`. Edytuj sekcję `ConnectionStrings` i dostosuj łańcuch połączenia według potrzeb:
 
 ```json
-"Server=ACERASPIRE5\\SQLEXPRESS;Database=GroceryStore;Trusted_Connection=True;TrustServerCertificate=True;"
+"Server=ACERASPIRE5\\SQLEXPRESS;Database=Grocery1;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
 ```
 
 ### 🔑 Dane Testowych dla Użytkowników
